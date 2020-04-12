@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class BeerHouse {
     private ArrayList<Integer> stock;
-    private static int beer;
+    private static int beerNumber = 0;
 
     public BeerHouse() {
         this.stock = new ArrayList<>();
@@ -12,7 +12,7 @@ public class BeerHouse {
 
     public void setStock(ArrayList<Integer> stock) { this.stock = stock; }
 
-    public synchronized void produce(int beerNumber){
+    public synchronized int produce(){
         while(stock.size()>15){//tiene una capacidad maxima de 100 cervezas pero le puse 15 para probar
             try
             {
@@ -21,8 +21,11 @@ public class BeerHouse {
             catch (InterruptedException e)
             {}
         }
+        int ans = beerNumber;
         stock.add(beerNumber);
+        ++beerNumber;//es nada mas para diferenciar las beer
         notifyAll();
+        return ans;
     }
 
     public synchronized int consume(){

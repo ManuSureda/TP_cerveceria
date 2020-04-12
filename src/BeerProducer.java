@@ -3,7 +3,6 @@ import java.util.Random;
 public class BeerProducer extends Thread{
     private BeerHouse beerHouse;
     private String producerName;
-    private static int beerNumber = 0;
 
     public BeerProducer(BeerHouse beerHouse, String producerName) {
         this.beerHouse = beerHouse;
@@ -31,17 +30,15 @@ public class BeerProducer extends Thread{
     }
 
     @Override
-    public void run() {
-        try
-        {
+    public synchronized void run() {
+        //try{
+            int aux = -1;
             for (int i=0;i<25;i++){
-                beerHouse.produce(beerNumber);
-                System.out.println("El productor: "+this.getProducerName()+" produjo la cerveza: "+beerNumber);
-                beerNumber++;
-                BeerProducer.sleep((long)random());
+                aux = beerHouse.produce();
+                System.out.println("El productor: "+this.getProducerName()+" produjo la cerveza: "+aux);
+
+          //      BeerProducer.sleep((long)random());
             }
-        }catch (InterruptedException e)
-        {
-        }
+        //}catch (InterruptedException e){}
     }
 }
