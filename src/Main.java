@@ -9,8 +9,16 @@ public class Main {
         BeerProducer bp = new BeerProducer(bh,"productor1");
         BeerProducer bp2 = new BeerProducer(bh,"productor2");
 
+        /*bp.setPriority(1);
+        bp2.setPriority(2);*/
+
         bp.start();
         bp2.start();
+
+
+       /* bc.setPriority(10);
+        bc2.setPriority(10);
+        bc3.setPriority(10);*/
 
         bc.start();
         bc2.start();

@@ -41,14 +41,22 @@ public class BeerConsumer extends Thread{
 
     @Override
     public void run() {
-        //try{
+        /*try{
             int aux = -1;
-            for (int i=0;i<25;i++){
+            for (int i=0;i<300;i++){
                 aux = beerHouse.consume();
                 System.out.println("El Consumidor: "+this.getConsumerName()+" consumio la cerveza: "+aux);
-                //BeerConsumer.sleep((long)random());
+                System.out.println("stock: "+beerHouse.getStock().size());
+                BeerConsumer.sleep((long)random());
             }
-        //} catch (InterruptedException e) { }
+        } catch (InterruptedException e) { }*/
+
+        int aux = -1;
+        while (!beerHouse.getStock().isEmpty()){
+            aux = beerHouse.consume();
+            System.out.println("El Consumidor: "+this.getConsumerName()+" consumio la cerveza: "+aux);
+            System.out.println("stock: "+beerHouse.getStock().size());
+        }
 
     }
 }

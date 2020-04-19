@@ -31,14 +31,20 @@ public class BeerProducer extends Thread{
 
     @Override
     public synchronized void run() {
-        //try{
+        /*try{
             int aux = -1;
             for (int i=0;i<25;i++){
                 aux = beerHouse.produce();
                 System.out.println("El productor: "+this.getProducerName()+" produjo la cerveza: "+aux);
-
-          //      BeerProducer.sleep((long)random());
+                System.out.println("stock: "+beerHouse.getStock().size());
+                BeerProducer.sleep((long)random());
             }
-        //}catch (InterruptedException e){}
+        }catch (InterruptedException e){}*/
+        int aux = -1;
+        while (beerHouse.getStock().size()<beerHouse.getMAX_CAPACITY()){
+            aux = beerHouse.produce();
+            System.out.println("El productor: "+this.getProducerName()+" produjo la cerveza: "+aux);
+            System.out.println("stock: "+beerHouse.getStock().size());
+        }
     }
 }

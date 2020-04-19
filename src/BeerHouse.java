@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class BeerHouse {
     private ArrayList<Integer> stock;
+    private final int MAX_CAPACITY = 100;
     private static int beerNumber = 0;
 
     public BeerHouse() {
@@ -13,7 +14,7 @@ public class BeerHouse {
     public void setStock(ArrayList<Integer> stock) { this.stock = stock; }
 
     public synchronized int produce(){
-        while(stock.size()>15){//tiene una capacidad maxima de 100 cervezas pero le puse 15 para probar
+        while(stock.size() == MAX_CAPACITY){
             try
             {
                 wait();
@@ -26,6 +27,18 @@ public class BeerHouse {
         ++beerNumber;//es nada mas para diferenciar las beer
         notifyAll();
         return ans;
+    }
+
+    public int getMAX_CAPACITY() {
+        return MAX_CAPACITY;
+    }
+
+    public static int getBeerNumber() {
+        return beerNumber;
+    }
+
+    public static void setBeerNumber(int beerNumber) {
+        BeerHouse.beerNumber = beerNumber;
     }
 
     public synchronized int consume(){
